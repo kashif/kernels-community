@@ -1,0 +1,160 @@
+[general]
+name = "pytorch-sparse"
+version = 1
+license = "MIT"
+backends = [
+    "cpu",
+    "cuda",
+    "rocm",
+]
+
+[general.hub]
+repo-id = "kernels-community/pytorch-sparse"
+
+[torch]
+src = [
+    "torch-ext/torch_binding.cpp",
+    "torch-ext/torch_binding.h",
+]
+
+[kernel.pytorch_sparse_cpu]
+backend = "cpu"
+depends = ["torch"]
+src = [
+    "pytorch_sparse/convert.cpp",
+    "pytorch_sparse/diag.cpp",
+    "pytorch_sparse/ego_sample.cpp",
+    "pytorch_sparse/extensions.h",
+    "pytorch_sparse/macros.h",
+    "pytorch_sparse/relabel.cpp",
+    "pytorch_sparse/rw.cpp",
+    "pytorch_sparse/saint.cpp",
+    "pytorch_sparse/sample.cpp",
+    "pytorch_sparse/sparse.h",
+    "pytorch_sparse/spmm.cpp",
+    "pytorch_sparse/version.cpp",
+    "pytorch_sparse/cpu/convert_cpu.cpp",
+    "pytorch_sparse/cpu/convert_cpu.h",
+    "pytorch_sparse/cpu/diag_cpu.cpp",
+    "pytorch_sparse/cpu/diag_cpu.h",
+    "pytorch_sparse/cpu/ego_sample_cpu.cpp",
+    "pytorch_sparse/cpu/ego_sample_cpu.h",
+    "pytorch_sparse/cpu/reducer.h",
+    "pytorch_sparse/cpu/relabel_cpu.cpp",
+    "pytorch_sparse/cpu/relabel_cpu.h",
+    "pytorch_sparse/cpu/rw_cpu.cpp",
+    "pytorch_sparse/cpu/rw_cpu.h",
+    "pytorch_sparse/cpu/saint_cpu.cpp",
+    "pytorch_sparse/cpu/saint_cpu.h",
+    "pytorch_sparse/cpu/sample_cpu.cpp",
+    "pytorch_sparse/cpu/sample_cpu.h",
+    "pytorch_sparse/cpu/spmm_cpu.cpp",
+    "pytorch_sparse/cpu/spmm_cpu.h",
+    "pytorch_sparse/cpu/utils.h",
+]
+
+[kernel.pytorch_sparse_cuda]
+backend = "cuda"
+depends = ["torch"]
+src = [
+    "pytorch_sparse/convert.cpp",
+    "pytorch_sparse/diag.cpp",
+    "pytorch_sparse/ego_sample.cpp",
+    "pytorch_sparse/extensions.h",
+    "pytorch_sparse/macros.h",
+    "pytorch_sparse/relabel.cpp",
+    "pytorch_sparse/rw.cpp",
+    "pytorch_sparse/saint.cpp",
+    "pytorch_sparse/sample.cpp",
+    "pytorch_sparse/sparse.h",
+    "pytorch_sparse/spmm.cpp",
+    "pytorch_sparse/version.cpp",
+    "pytorch_sparse/cpu/convert_cpu.cpp",
+    "pytorch_sparse/cpu/convert_cpu.h",
+    "pytorch_sparse/cpu/diag_cpu.cpp",
+    "pytorch_sparse/cpu/diag_cpu.h",
+    "pytorch_sparse/cpu/ego_sample_cpu.cpp",
+    "pytorch_sparse/cpu/ego_sample_cpu.h",
+    "pytorch_sparse/cpu/reducer.h",
+    "pytorch_sparse/cpu/relabel_cpu.cpp",
+    "pytorch_sparse/cpu/relabel_cpu.h",
+    "pytorch_sparse/cpu/rw_cpu.cpp",
+    "pytorch_sparse/cpu/rw_cpu.h",
+    "pytorch_sparse/cpu/saint_cpu.cpp",
+    "pytorch_sparse/cpu/saint_cpu.h",
+    "pytorch_sparse/cpu/sample_cpu.cpp",
+    "pytorch_sparse/cpu/sample_cpu.h",
+    "pytorch_sparse/cpu/spmm_cpu.cpp",
+    "pytorch_sparse/cpu/spmm_cpu.h",
+    "pytorch_sparse/cpu/utils.h",
+    "pytorch_sparse/cuda/atomics.cuh",
+    "pytorch_sparse/cuda/convert_cuda.cu",
+    "pytorch_sparse/cuda/convert_cuda.h",
+    "pytorch_sparse/cuda/diag_cuda.cu",
+    "pytorch_sparse/cuda/diag_cuda.h",
+    "pytorch_sparse/cuda/reducer.cuh",
+    "pytorch_sparse/cuda/rw_cuda.cu",
+    "pytorch_sparse/cuda/rw_cuda.h",
+    "pytorch_sparse/cuda/spmm_cuda.cu",
+    "pytorch_sparse/cuda/spmm_cuda.h",
+    "pytorch_sparse/cuda/utils.cuh",
+]
+
+[kernel.pytorch_sparse_rocm]
+backend = "rocm"
+depends = ["torch"]
+rocm-archs = [
+    "gfx906",
+    "gfx908",
+    "gfx90a",
+    "gfx940",
+    "gfx941",
+    "gfx942",
+    "gfx1030",
+    "gfx1100",
+    "gfx1101",
+    "gfx1150",
+]
+src = [
+    "pytorch_sparse/convert.cpp",
+    "pytorch_sparse/diag.cpp",
+    "pytorch_sparse/ego_sample.cpp",
+    "pytorch_sparse/extensions.h",
+    "pytorch_sparse/macros.h",
+    "pytorch_sparse/relabel.cpp",
+    "pytorch_sparse/rw.cpp",
+    "pytorch_sparse/saint.cpp",
+    "pytorch_sparse/sample.cpp",
+    "pytorch_sparse/sparse.h",
+    "pytorch_sparse/spmm.cpp",
+    "pytorch_sparse/version.cpp",
+    "pytorch_sparse/cpu/convert_cpu.cpp",
+    "pytorch_sparse/cpu/convert_cpu.h",
+    "pytorch_sparse/cpu/diag_cpu.cpp",
+    "pytorch_sparse/cpu/diag_cpu.h",
+    "pytorch_sparse/cpu/ego_sample_cpu.cpp",
+    "pytorch_sparse/cpu/ego_sample_cpu.h",
+    "pytorch_sparse/cpu/reducer.h",
+    "pytorch_sparse/cpu/relabel_cpu.cpp",
+    "pytorch_sparse/cpu/relabel_cpu.h",
+    "pytorch_sparse/cpu/rw_cpu.cpp",
+    "pytorch_sparse/cpu/rw_cpu.h",
+    "pytorch_sparse/cpu/saint_cpu.cpp",
+    "pytorch_sparse/cpu/saint_cpu.h",
+    "pytorch_sparse/cpu/sample_cpu.cpp",
+    "pytorch_sparse/cpu/sample_cpu.h",
+    "pytorch_sparse/cpu/spmm_cpu.cpp",
+    "pytorch_sparse/cpu/spmm_cpu.h",
+    "pytorch_sparse/cpu/utils.h",
+    "pytorch_sparse/cuda/atomics.cuh",
+    "pytorch_sparse/cuda/convert_cuda.cu",
+    "pytorch_sparse/cuda/convert_cuda.h",
+    "pytorch_sparse/cuda/diag_cuda.cu",
+    "pytorch_sparse/cuda/diag_cuda.h",
+    "pytorch_sparse/cuda/reducer.cuh",
+    "pytorch_sparse/cuda/rw_cuda.cu",
+    "pytorch_sparse/cuda/rw_cuda.h",
+    "pytorch_sparse/cuda/spmm_cuda.cu",
+    "pytorch_sparse/cuda/spmm_cuda.h",
+    "pytorch_sparse/cuda/utils.cuh",
+]
