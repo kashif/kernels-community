@@ -1,0 +1,119 @@
+[general]
+name = "pytorch-scatter"
+version = 1
+license = "MIT"
+backends = [
+    "cpu",
+    "cuda",
+    "rocm",
+]
+
+[general.hub]
+repo-id = "kernels-community/pytorch-scatter"
+
+[torch]
+src = [
+    "torch-ext/torch_binding.cpp",
+    "torch-ext/torch_binding.h",
+]
+
+[kernel.pytorch_scatter_cpu]
+backend = "cpu"
+depends = ["torch"]
+src = [
+    "pytorch_scatter/extensions.h",
+    "pytorch_scatter/macros.h",
+    "pytorch_scatter/scatter.cpp",
+    "pytorch_scatter/scatter.h",
+    "pytorch_scatter/segment_coo.cpp",
+    "pytorch_scatter/segment_csr.cpp",
+    "pytorch_scatter/utils.h",
+    "pytorch_scatter/version.cpp",
+    "pytorch_scatter/cpu/index_info.h",
+    "pytorch_scatter/cpu/reducer.h",
+    "pytorch_scatter/cpu/scatter_cpu.cpp",
+    "pytorch_scatter/cpu/scatter_cpu.h",
+    "pytorch_scatter/cpu/segment_coo_cpu.cpp",
+    "pytorch_scatter/cpu/segment_coo_cpu.h",
+    "pytorch_scatter/cpu/segment_csr_cpu.cpp",
+    "pytorch_scatter/cpu/segment_csr_cpu.h",
+    "pytorch_scatter/cpu/utils.h",
+]
+
+[kernel.pytorch_scatter_cuda]
+backend = "cuda"
+depends = ["torch"]
+src = [
+    "pytorch_scatter/extensions.h",
+    "pytorch_scatter/macros.h",
+    "pytorch_scatter/scatter.cpp",
+    "pytorch_scatter/scatter.h",
+    "pytorch_scatter/segment_coo.cpp",
+    "pytorch_scatter/segment_csr.cpp",
+    "pytorch_scatter/utils.h",
+    "pytorch_scatter/version.cpp",
+    "pytorch_scatter/cpu/index_info.h",
+    "pytorch_scatter/cpu/reducer.h",
+    "pytorch_scatter/cpu/scatter_cpu.cpp",
+    "pytorch_scatter/cpu/scatter_cpu.h",
+    "pytorch_scatter/cpu/segment_coo_cpu.cpp",
+    "pytorch_scatter/cpu/segment_coo_cpu.h",
+    "pytorch_scatter/cpu/segment_csr_cpu.cpp",
+    "pytorch_scatter/cpu/segment_csr_cpu.h",
+    "pytorch_scatter/cpu/utils.h",
+    "pytorch_scatter/cuda/atomics.cuh",
+    "pytorch_scatter/cuda/index_info.cuh",
+    "pytorch_scatter/cuda/reducer.cuh",
+    "pytorch_scatter/cuda/scatter_cuda.cu",
+    "pytorch_scatter/cuda/scatter_cuda.h",
+    "pytorch_scatter/cuda/segment_coo_cuda.cu",
+    "pytorch_scatter/cuda/segment_coo_cuda.h",
+    "pytorch_scatter/cuda/segment_csr_cuda.cu",
+    "pytorch_scatter/cuda/segment_csr_cuda.h",
+    "pytorch_scatter/cuda/utils.cuh",
+]
+
+[kernel.pytorch_scatter_rocm]
+backend = "rocm"
+depends = ["torch"]
+rocm-archs = [
+    "gfx906",
+    "gfx908",
+    "gfx90a",
+    "gfx940",
+    "gfx941",
+    "gfx942",
+    "gfx1030",
+    "gfx1100",
+    "gfx1101",
+    "gfx1150",
+]
+src = [
+    "pytorch_scatter/extensions.h",
+    "pytorch_scatter/macros.h",
+    "pytorch_scatter/scatter.cpp",
+    "pytorch_scatter/scatter.h",
+    "pytorch_scatter/segment_coo.cpp",
+    "pytorch_scatter/segment_csr.cpp",
+    "pytorch_scatter/utils.h",
+    "pytorch_scatter/version.cpp",
+    "pytorch_scatter/cpu/index_info.h",
+    "pytorch_scatter/cpu/reducer.h",
+    "pytorch_scatter/cpu/scatter_cpu.cpp",
+    "pytorch_scatter/cpu/scatter_cpu.h",
+    "pytorch_scatter/cpu/segment_coo_cpu.cpp",
+    "pytorch_scatter/cpu/segment_coo_cpu.h",
+    "pytorch_scatter/cpu/segment_csr_cpu.cpp",
+    "pytorch_scatter/cpu/segment_csr_cpu.h",
+    "pytorch_scatter/cpu/utils.h",
+    "pytorch_scatter/cuda/atomics.cuh",
+    "pytorch_scatter/cuda/index_info.cuh",
+    "pytorch_scatter/cuda/reducer.cuh",
+    "pytorch_scatter/cuda/scatter_cuda.cu",
+    "pytorch_scatter/cuda/scatter_cuda.h",
+    "pytorch_scatter/cuda/segment_coo_cuda.cu",
+    "pytorch_scatter/cuda/segment_coo_cuda.h",
+    "pytorch_scatter/cuda/segment_csr_cuda.cu",
+    "pytorch_scatter/cuda/segment_csr_cuda.h",
+    "pytorch_scatter/cuda/utils.cuh",
+]
