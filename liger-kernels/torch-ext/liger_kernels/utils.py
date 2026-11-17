@@ -154,6 +154,21 @@ def element_mul_kernel(
         tl.store(X_ptr + X_offsets, X_block * grad_output, mask=X_offsets < n_cols)
 
 
+@triton.jit
+def log1p(x):
+    # Retain small increments using tl.log alone, on every Triton backend.
+    u = 1.0 + x
+    return tl.where(u == 1.0, x, tl.log(u) * (x / tl.where(u == 1.0, 1.0, u - 1.0)))
+
+
+@triton.jit
+def target_nll(x_target, m, sum_exp_others):
+    # softplus(logsumexp(non-target logits) - x_target), without forming
+    # 1 + the small probability tail before taking its logarithm.
+    r = (m - x_target) + tl.log(sum_exp_others)
+    return tl.maximum(r, 0.0) + log1p(tl.exp(-tl.abs(r)))
+
+
 def get_npu_core_count(default: int = 20) -> int:
     """Return NPU vector core count.
     Fallback to `default` if Triton runtime or NPU device is unavailable.
